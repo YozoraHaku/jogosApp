@@ -3,15 +3,15 @@ import java.time.*;
 import java.util.*;
 
 public class Jogo {
-    private UUID id;
-    private String nome;
-    private boolean finalizado;
-    private LocalTime tempoDeJogo;
-    private LocalTime tamanhoJogo;
-    private LocalDate dataLancamento;
-    private int avaliacao;
+    private UUID id; //ok
+    private String nome; //ok
+    private boolean finalizado; //ok
+    private int tempoJogado; //ok
+    private int tamanhoJogo; //ok
+    private LocalDate dataLancamento; //ok
+    private int avaliacao;//ok
     
-    public Jogo(String nome, LocalDate dataLancamento, LocalTime tamanhoJogo){
+    public Jogo(String nome, LocalDate dataLancamento, int tamanhoJogo){
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.tamanhoJogo = tamanhoJogo;
@@ -42,23 +42,23 @@ public class Jogo {
         this.dataLancamento = dataLancamento;
     }
 
-    // Tamanho do jogo (Hrs) ****************************************************************************************************
-    public LocalTime getTamanhoJogo() {
+    // Tamanho do jogo (int hrs) ****************************************************************************************************
+    public int getTamanhoJogo() {
         return tamanhoJogo;
     }
-    public void setTamanhoJogo(LocalTime tamanhoJogo) {
+    public void setTamanhoJogo(int tamanhoJogo) {
         this.tamanhoJogo = tamanhoJogo;
     }
 
-    // Tempo de jogo (Hrs) *******************************************************************************************************
-    public LocalTime getTempoDeJogo() {
-        return tempoDeJogo;
+    // Tempo jogado (int hrs) *******************************************************************************************************
+    public int getTempoJogado() {
+        return tempoJogado;
     }
-    public void setTempoDeJogo(LocalTime tempoDeJogo) {
-        this.tempoDeJogo = tempoDeJogo;
+    public void setTempoJogado(int tempoJogado) {
+        this.tempoJogado = tempoJogado;
     }
 
-    // Finalizado (sim ou não)
+    // Finalizado (sim ou não) *******************************************************************************************************
     public boolean isFinalizado(){
         return finalizado;
     }
@@ -66,7 +66,7 @@ public class Jogo {
         this.finalizado = !finalizado;
     }
 
-    // ID
+    // ID ****************************************************************************************************************************
     public UUID getId() {
         return id;
     }

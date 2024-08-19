@@ -22,6 +22,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+    //Json archive manipulation
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 application {
