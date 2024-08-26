@@ -17,4 +17,8 @@ public class BaseTela {
     public void iniciar(){
         tela.setVisible(true);
     }
+
+    public void dispose(){
+        tela.setVisible(false);
+    }
 }

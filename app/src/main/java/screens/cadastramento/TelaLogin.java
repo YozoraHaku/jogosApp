@@ -1,10 +1,12 @@
-package screens;
-
+package screens.cadastramento;
 import javax.swing.*;
+import screens.BaseTela;
 import java.awt.*;
 
 public class TelaLogin extends BaseTela{
     private JButton btnLogin;
+    private JButton btnCadastro;
+    private JPanel painelBotoes;
 
     private JTextField campoEmail;
     private JLabel nmEmail;
@@ -14,11 +16,30 @@ public class TelaLogin extends BaseTela{
 
     public TelaLogin(){
         super("login", 200, 600);
-        btnLogin = new JButton("Login");
+        tela.setResizable(false);
 
+        // Inicializando o painel de botoes
+        painelBotoes = new JPanel();
+
+        // Ações botão de login
+        btnLogin = new JButton("Login");
+        btnLogin.addActionListener(e -> {
+
+        });
+
+        // Ações botão de cadastro
+        btnCadastro = new JButton("Cadastrar-se");
+        btnCadastro.addActionListener(e -> {
+            TelaCadastro cadastrando = new TelaCadastro();
+            cadastrando.iniciar();
+            dispose();
+        });
+
+        // Area email
         campoEmail = new JTextField();
         nmEmail = new JLabel("Email: ");
         
+        // Area Senha
         campoSenha = new JPasswordField();
         nmSenha = new JLabel("Senha: ");
 
@@ -31,6 +52,8 @@ public class TelaLogin extends BaseTela{
         c.ipady = 15;
         c.gridx = 0;
         c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
         tela.add(nmEmail, c);
 
         // Caixa de texto do email
@@ -54,13 +77,16 @@ public class TelaLogin extends BaseTela{
         c.gridy = 2;
         tela.add(campoSenha, c);
 
-        // Botão de login
+        // Painel Login/Cadastro
+        painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        painelBotoes.add(btnLogin);
+        painelBotoes.add(btnCadastro);
         c.ipadx = 25;
         c.ipady = 10;
         c.gridx = GridBagConstraints.CENTER;
         c.gridy = 3;
+        tela.add(painelBotoes, c);
         
-        tela.add(btnLogin, c);
 
 
     }
