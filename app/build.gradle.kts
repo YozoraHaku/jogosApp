@@ -28,7 +28,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("jogosapp.App")
+    mainClass.set("Main")
 }
 
 tasks.named<Test>("test") {

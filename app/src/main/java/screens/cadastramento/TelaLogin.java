@@ -18,13 +18,21 @@ public class TelaLogin extends BaseTela{
         super("login", 200, 600);
         tela.setResizable(false);
 
+        // Area email
+        campoEmail = new JTextField();
+        nmEmail = new JLabel("Email: ");
+        
+        // Area Senha
+        campoSenha = new JPasswordField();
+        nmSenha = new JLabel("Senha: ");
+
         // Inicializando o painel de botoes
         painelBotoes = new JPanel();
 
         // Ações botão de login
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(e -> {
-
+            dispose();
         });
 
         // Ações botão de cadastro
@@ -34,14 +42,6 @@ public class TelaLogin extends BaseTela{
             cadastrando.iniciar();
             dispose();
         });
-
-        // Area email
-        campoEmail = new JTextField();
-        nmEmail = new JLabel("Email: ");
-        
-        // Area Senha
-        campoSenha = new JPasswordField();
-        nmSenha = new JLabel("Senha: ");
 
         // criando um grid e dimensionando
         tela.setLayout(new GridBagLayout());

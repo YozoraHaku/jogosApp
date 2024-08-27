@@ -1,4 +1,4 @@
-package serializers;
+package controllers;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,8 +12,8 @@ import objects.User;
 
 public class UserController {
     private List<User> users = new ArrayList<>();
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private String directoryPath = "app\\files\\users_files";
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private String directoryPath = ".\\files\\users_files";
     
 
     public void criarArquivo(){
@@ -24,12 +24,16 @@ public class UserController {
         }
         
         File file = new File(directory, "users_file.json");
-
-        try (FileWriter writer = new FileWriter(file)){
-            writer.write(json);
-        } catch (IOException e) {
-            System.err.println("Erro ao salvar o arquivo Json: "+e.getMessage());
+        if (file.exists()){
+            atualizarArquivo();
+        }else{
+            try (FileWriter writer = new FileWriter(file)){
+                writer.write(json);
+            } catch (IOException e) {
+                System.err.println("Erro ao salvar o arquivo Json: "+e.getMessage());
+            }
         }
+        
     }
 
     public void atualizarArquivo(){
@@ -42,9 +46,11 @@ public class UserController {
 
     public void addUsuarioLista(User generico){
         users.add(generico);
+        criarArquivo();
     }
 
     public void removeUsuarioLista(User generico){
         users.remove(generico);
+        atualizarArquivo();
     }
 }

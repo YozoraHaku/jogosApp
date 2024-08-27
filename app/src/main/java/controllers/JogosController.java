@@ -1,4 +1,4 @@
-package serializers;
+package controllers;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -42,6 +42,7 @@ public class JogosController {
 
     public void addJogoLista(Jogo generico){
         jogos.add(generico);
+        criarArquivo();
     }
     
     public void removeJogoLista(Jogo generico){

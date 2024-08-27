@@ -1,7 +1,10 @@
 package screens;
 import javax.swing.*;
 
-public class BaseTela {
+import controllers.UserController;
+
+// Esse bagulo de estender o controlador vai dar uma merda se for dois, então melhor transformar em um só
+public class BaseTela extends UserController{
 
     protected JFrame tela;
 
