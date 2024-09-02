@@ -5,7 +5,7 @@ import java.awt.*;
 import objects.User;
 import screens.BaseTela;
 
-public class TelaCadastro extends BaseTela{
+public class TelaCadastroUsuario extends BaseTela{
     private JLabel nmNome;
     private JTextField fillNome;
     private JLabel nmEmail;
@@ -18,7 +18,7 @@ public class TelaCadastro extends BaseTela{
     private JButton btnVoltar;
     private JPanel painelCadVol;
     
-    public TelaCadastro(){
+    public TelaCadastroUsuario(){
         super("register", 600, 600);
 
         // Sessão Nome
@@ -40,11 +40,12 @@ public class TelaCadastro extends BaseTela{
         // Botão cadastrar
         btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(e -> {
+            // Adicionar excessão pra email já existente
             if(String.valueOf(fillSenha.getPassword())==String.valueOf(fillRepetirSenha.getPassword())){
-                User a = new User(fillNome.getText(), fillEmail.getText(), String.valueOf(fillSenha.getPassword()));
-                System.out.println(String.valueOf(fillSenha.getPassword()));
-                // Arrumar isso aqui depois!!!!!
-                addUsuarioLista(a);
+                User novoUsuario = new User(fillNome.getText(), fillEmail.getText(), String.valueOf(fillSenha.getPassword()));
+                System.out.println(novoUsuario.getNome());
+                getObjectController().addUsuarioLista(novoUsuario);
+                salvarArquivo(getObjectController());
             }
             TelaLogin a = new TelaLogin();
             a.iniciar();

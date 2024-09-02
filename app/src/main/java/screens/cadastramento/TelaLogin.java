@@ -38,7 +38,7 @@ public class TelaLogin extends BaseTela{
         // Ações botão de cadastro
         btnCadastro = new JButton("Cadastrar-se");
         btnCadastro.addActionListener(e -> {
-            TelaCadastro cadastrando = new TelaCadastro();
+            TelaCadastroUsuario cadastrando = new TelaCadastroUsuario();
             cadastrando.iniciar();
             dispose();
         });

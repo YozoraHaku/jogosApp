@@ -46,6 +46,9 @@ public class User {
     public void removeJogo(Jogo jogo){
         listaJogos.remove(jogo);
     }
+    public List<Jogo> getListaJogos() {
+        return listaJogos;
+    }
 
 
 }

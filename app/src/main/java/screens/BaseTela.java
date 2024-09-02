@@ -1,14 +1,18 @@
 package screens;
 import javax.swing.*;
 
-import controllers.UserController;
+import controllers.ObjectSerializer;
+import controllers.UsersJogosController;
 
-// Esse bagulo de estender o controlador vai dar uma merda se for dois, então melhor transformar em um só
-public class BaseTela extends UserController{
+
+// Esse bagulo de estender o controlador vai dar uma merda se for dois, então melhor transformar em um só ------>(!!!Transformei em um só, só falta editar o objectSerializer!!!)<------
+public class BaseTela extends ObjectSerializer{
 
     protected JFrame tela;
+    private UsersJogosController objectController;
 
     public BaseTela(String titulo, int h, int w){
+        objectController = lerArquivo();
         tela = new JFrame();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setTitle(titulo);
@@ -23,5 +27,9 @@ public class BaseTela extends UserController{
 
     public void dispose(){
         tela.setVisible(false);
+    }
+
+    public UsersJogosController getObjectController() {
+        return objectController;
     }
 }
