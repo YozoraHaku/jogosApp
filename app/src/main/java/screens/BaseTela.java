@@ -1,8 +1,8 @@
 package screens;
 import javax.swing.*;
 
-import controllers.ObjectSerializer;
 import controllers.UsersJogosController;
+import serializers.ObjectSerializer;
 
 
 // Esse bagulo de estender o controlador vai dar uma merda se for dois, então melhor transformar em um só ------>(!!!Transformei em um só, só falta editar o objectSerializer!!!)<------

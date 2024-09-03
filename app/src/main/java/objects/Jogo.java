@@ -8,10 +8,10 @@ public class Jogo {
     private boolean finalizado; //ok
     private int tempoJogado; //ok
     private int tamanhoJogo; //ok
-    private LocalDate dataLancamento; //ok
+    private String dataLancamento; //ok
     private int avaliacao;//ok
     
-    public Jogo(String nome, LocalDate dataLancamento, int tamanhoJogo){
+    public Jogo(String nome, String dataLancamento, int tamanhoJogo){
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.tamanhoJogo = tamanhoJogo;
@@ -35,10 +35,10 @@ public class Jogo {
     }
 
     // Data de lançamento ******************************************************************************************************
-    public LocalDate getDataLancamento() {
+    public String getDataLancamento() {
         return dataLancamento;
     }
-    public void setDataLancamento(LocalDate dataLancamento) {
+    public void setDataLancamento(String dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
 

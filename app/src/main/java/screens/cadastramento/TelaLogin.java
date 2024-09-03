@@ -1,6 +1,10 @@
 package screens.cadastramento;
 import javax.swing.*;
+
+import objects.User;
 import screens.BaseTela;
+import screens.visualizacao_dados.TelaInicial;
+
 import java.awt.*;
 
 public class TelaLogin extends BaseTela{
@@ -32,7 +36,18 @@ public class TelaLogin extends BaseTela{
         // Ações botão de login
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(e -> {
-            dispose();
+            for (User user : getObjectController().getListaUsers()) {
+                if (user.getEmail().equals(campoEmail.getText()) && user.getSenha().equals(String.valueOf(campoSenha.getPassword()))) {
+                    TelaInicial telaPrincipal = new TelaInicial(user);
+                    telaPrincipal.iniciar();
+                    dispose();
+                    continue;
+                } 
+                // else {
+                //     // !!!Adicionar excessão para email ou senha incorretos!!!
+                // }
+
+            }
         });
 
         // Ações botão de cadastro

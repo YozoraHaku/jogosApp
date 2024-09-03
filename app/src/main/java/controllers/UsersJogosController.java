@@ -22,7 +22,7 @@ public class UsersJogosController implements Serializable{
             }
         }
     }
-    public List getListaJogos() {
+    public ArrayList<Jogo> getListaJogos() {
         return listaJogos;
     }
 
@@ -38,7 +38,7 @@ public class UsersJogosController implements Serializable{
             }
         }
     }
-    public List getListaUsers() {
+    public ArrayList<User> getListaUsers() {
         return listaUsers;
     }
 

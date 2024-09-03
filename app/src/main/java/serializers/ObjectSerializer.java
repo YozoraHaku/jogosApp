@@ -1,10 +1,12 @@
-package controllers;
+package serializers;
 
 import java.io.*;
 
 import com.google.gson.*;
 
+import controllers.UsersJogosController;
 
+// Serializador finalizado caralhoooooooooooooooooooooooooooo (!!!falta editar a excessão da linha 20!!!)
 
 public class ObjectSerializer{
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -15,7 +17,7 @@ public class ObjectSerializer{
         try (FileWriter writer = new FileWriter("dados.json")){
             writer.write(json);
         } catch (IOException e) {
-            System.err.println("Erro ao salvar o arquivo Json: "+e.getMessage());
+            System.err.println("Erro ao salvar o arquivo Json: "+e.getMessage()); //essa aqui pra editar!!!!!
         }
          
     }
@@ -23,20 +25,15 @@ public class ObjectSerializer{
     
 
     public UsersJogosController lerArquivo(){
-        try(FileInputStream fis = new FileInputStream("dados.json");
-            ObjectInputStream in = new ObjectInputStream(fis);) {
-
-
-            UsersJogosController lida = (UsersJogosController) in.readObject();
+        try(FileReader fis = new FileReader("dados.json")) {
+            UsersJogosController lida = gson.fromJson(fis, UsersJogosController.class);
             return lida;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
             salvarArquivo(new UsersJogosController());
             return lerArquivo();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        } 
     }
     
 

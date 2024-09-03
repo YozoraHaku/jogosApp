@@ -40,12 +40,17 @@ public class TelaCadastroUsuario extends BaseTela{
         // Botão cadastrar
         btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(e -> {
-            // Adicionar excessão pra email já existente
-            if(String.valueOf(fillSenha.getPassword())==String.valueOf(fillRepetirSenha.getPassword())){
-                User novoUsuario = new User(fillNome.getText(), fillEmail.getText(), String.valueOf(fillSenha.getPassword()));
-                System.out.println(novoUsuario.getNome());
+            String senhaPreenchido = new String(fillSenha.getPassword()).trim();
+            String repetirSenhaPreenchido = new String(fillRepetirSenha.getPassword()).trim();
+            
+            if(senhaPreenchido.equals(repetirSenhaPreenchido)){
+                User novoUsuario = new User(fillNome.getText(), fillEmail.getText(), senhaPreenchido);
                 getObjectController().addUsuarioLista(novoUsuario);
                 salvarArquivo(getObjectController());
+            } else {
+
+                // !!!Adicionar excessão pra email já existente!!!
+                
             }
             TelaLogin a = new TelaLogin();
             a.iniciar();
