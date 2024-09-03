@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "JogosApp"
-// include("app")
+include("app")

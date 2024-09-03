@@ -1,5 +1,5 @@
 // import screens.TelaInicial;
-import screens.cadastramento.TelaLogin;
+import screens.cadastramentos.TelaLogin;
 
 public class Main {
     public static void main(String[] args) {

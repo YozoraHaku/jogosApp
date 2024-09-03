@@ -1,4 +1,4 @@
-package screens.cadastramento;
+package screens.cadastramentos;
 
 import javax.swing.*;
 import java.awt.*;
