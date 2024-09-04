@@ -5,7 +5,7 @@ import controllers.UsersJogosController;
 import serializers.ObjectSerializer;
 
 
-// Esse bagulo de estender o controlador vai dar uma merda se for dois, então melhor transformar em um só ------>(!!!Transformei em um só, só falta editar o objectSerializer!!!)<------
+// ver como colocar para extender o JFrame e transformar o serializer em um atributo!!!!!!!!!!
 public class BaseTela extends ObjectSerializer{
 
     protected JFrame tela;
@@ -14,7 +14,6 @@ public class BaseTela extends ObjectSerializer{
     public BaseTela(String titulo, int h, int w){
         objectController = lerArquivo();
         tela = new JFrame();
-        // tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setTitle(titulo);
         tela.setSize(w, h);
         tela.setLocationRelativeTo(null);
@@ -24,15 +23,12 @@ public class BaseTela extends ObjectSerializer{
     public void iniciar(){
         tela.setVisible(true);
     }
-
-    public void dispose(){
-        tela.setVisible(false);
+    public boolean isManipulavel(){
+        return tela.isEnabled();
     }
-
-    public boolean isOpen(){
-        return tela.isVisible();
+    public void setManipulavel(){
+        tela.setEnabled(!isManipulavel());
     }
-
     public UsersJogosController getObjectController() {
         return objectController;
     }

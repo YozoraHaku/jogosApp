@@ -22,7 +22,7 @@ public class TelaInicial extends BaseTela{
         // ******************************************* Botão para cadastrar um jogo novo *****************************************************
         btnCadJogo = new JButton("Cadastrar novo jogo");
         btnCadJogo.addActionListener(e -> {
-            TelaCadastrarJogo abrirCadastroJogo = new TelaCadastrarJogo();
+            TelaCadastrarJogo abrirCadastroJogo = new TelaCadastrarJogo(this);
             abrirCadastroJogo.iniciar();
 
         });
@@ -55,7 +55,7 @@ public class TelaInicial extends BaseTela{
             sair.addActionListener(e -> {
                 TelaLogin logout = new TelaLogin();
                 logout.iniciar();
-                dispose();
+                tela.dispose();
             });
             
             menu.add(meusJogos);

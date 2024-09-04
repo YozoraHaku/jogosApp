@@ -40,12 +40,12 @@ public class TelaLogin extends BaseTela{
                 if (user.getEmail().equals(campoEmail.getText()) && user.getSenha().equals(String.valueOf(campoSenha.getPassword()))) {
                     TelaInicial telaPrincipal = new TelaInicial(user);
                     telaPrincipal.iniciar();
-                    dispose();
+                    tela.dispose();
                     continue;
-                } 
-                // else {
-                //     // !!!Adicionar excessão para email ou senha incorretos!!!
-                // }
+                } else {
+                    // !!!Adicionar excessão para email ou senha incorretos!!!
+                    continue;
+                }
 
             }
         });
@@ -55,7 +55,7 @@ public class TelaLogin extends BaseTela{
         btnCadastro.addActionListener(e -> {
             TelaCadastroUsuario cadastrando = new TelaCadastroUsuario();
             cadastrando.iniciar();
-            dispose();
+            tela.dispose();
         });
 
         // criando um grid e dimensionando

@@ -54,7 +54,7 @@ public class TelaCadastroUsuario extends BaseTela{
             }
             TelaLogin a = new TelaLogin();
             a.iniciar();
-            dispose();
+            tela.dispose();
         });
 
         // Botão voltar
@@ -62,7 +62,7 @@ public class TelaCadastroUsuario extends BaseTela{
         btnVoltar.addActionListener(e -> {
             TelaLogin a = new TelaLogin();
             a.iniciar();
-            dispose();
+            tela.dispose();
         });
 
         // Montando o layout

@@ -4,25 +4,19 @@ import java.util.*;
 public class Jogo {
     private UUID id; //ok
     private String nome; //ok
-    private boolean finalizado; //ok
-    private int tempoJogado; //ok
+    private boolean finalizado; //ver como atribuir individualmente por usuario
+    private int tempoJogado; //ver como atribuir individualmente por usuario
     private int tamanhoJogo; //ok
     private String dataLancamento; //ok
-    private int avaliacao;//ok
+    private String desenvolvedor;
     
-    public Jogo(String nome, String dataLancamento, int tamanhoJogo){
+    public Jogo(String nome, String dataLancamento, int tamanhoJogo, String desenvolvedor){
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.tamanhoJogo = tamanhoJogo;
         this.dataLancamento = dataLancamento;
-    }
-
-    // Avaliação ****************************************************************************************************************
-    public int getAvaliacao() {
-        return avaliacao;
-    }
-    public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
+        this.desenvolvedor = desenvolvedor;
+        finalizado = false;
     }
 
     // Nome ********************************************************************************************************************
@@ -63,6 +57,14 @@ public class Jogo {
     }
     public void setFinalizado(){
         this.finalizado = !finalizado;
+    }
+
+    // Desenvolvedor(a) **************************************************************************************************************
+    public void setDesenvolvedor(String desenvolvedor) {
+        this.desenvolvedor = desenvolvedor;
+    }
+    public String getDesenvolvedor() {
+        return desenvolvedor;
     }
 
     // ID ****************************************************************************************************************************
