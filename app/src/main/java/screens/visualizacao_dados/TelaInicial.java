@@ -37,6 +37,7 @@ public class TelaInicial extends BaseTela{
             JMenuItem editarPerfil = new JMenuItem("Editar perfil");
             editarPerfil.addActionListener(e -> {
                 TelaEditarUsuario editarUsuario = new TelaEditarUsuario(generico);
+                editarUsuario.iniciar();
                 
             });
             JMenuItem excluirPerfil = new JMenuItem("Excluir perfil");
@@ -65,7 +66,7 @@ public class TelaInicial extends BaseTela{
 
         // ******************************************** LISTA DE JOGOS ***********************************************************************
         listaJogos = new JList<>(new DefaultListModel<>());
-        DefaultListModel<Jogo> elementosLista = (DefaultListModel<Jogo>) listaJogos.getModel(); //Eu vou ter que configurar melhor essa droga, não vou? tenho certeza que vai dar problema
+        DefaultListModel<Jogo> elementosLista = (DefaultListModel<Jogo>) listaJogos.getModel(); //Eu vou ter que configurar melhor essa droga, não vou? tenho certeza que vai dar problema (e eu não sei como funciona essa maravilha)
         for (Jogo jogo : getObjectController().getListaJogos()){
             elementosLista.addElement(jogo);
         }

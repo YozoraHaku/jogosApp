@@ -29,6 +29,10 @@ public class BaseTela extends ObjectSerializer{
         tela.setVisible(false);
     }
 
+    public boolean isOpen(){
+        return tela.isVisible();
+    }
+
     public UsersJogosController getObjectController() {
         return objectController;
     }
