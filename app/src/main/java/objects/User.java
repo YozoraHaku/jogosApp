@@ -7,7 +7,7 @@ public class User {
     private String nome;
     private String email;
     private String senha;
-    private List<Jogo> listaJogos;
+    private List<JogoSalvo> listaJogos;
 
     // Adicionar Polimorfismo (usar @Override e relacionados)
 
@@ -40,13 +40,13 @@ public class User {
     }
 
     // ********* MANIPULAR LISTA JGS ****************************
-    public void addJogo(Jogo jogo){
+    public void addJogo(JogoSalvo jogo){
         listaJogos.add(jogo);
     }
-    public void removeJogo(Jogo jogo){
+    public void removeJogo(JogoSalvo jogo){
         listaJogos.remove(jogo);
     }
-    public List<Jogo> getListaJogos() {
+    public List<JogoSalvo> getListaJogos() {
         return listaJogos;
     }
 

@@ -43,18 +43,22 @@ public class TelaCadastroUsuario extends BaseTela{
             String senhaPreenchido = new String(fillSenha.getPassword()).trim();
             String repetirSenhaPreenchido = new String(fillRepetirSenha.getPassword()).trim();
             
-            if(senhaPreenchido.equals(repetirSenhaPreenchido)){
-                User novoUsuario = new User(fillNome.getText(), fillEmail.getText(), senhaPreenchido);
-                getObjectController().addUsuarioLista(novoUsuario);
-                salvarArquivo(getObjectController());
-            } else {
+            if (senhaPreenchido==""||repetirSenhaPreenchido==""||fillNome.getText()==""||fillEmail.getText()=="") {
+                // adicionar excessão para espaço em branco
+            }else{
+                if(senhaPreenchido.equals(repetirSenhaPreenchido)){
+                    User novoUsuario = new User(fillNome.getText(), fillEmail.getText(), senhaPreenchido);
+                    getObjectController().addUsuarioLista(novoUsuario);
+                    salvarArquivo(getObjectController());
+                } else {
 
-                // !!!Adicionar excessão pra email já existente!!!
+                    // !!!Adicionar excessão pra email já existente!!!
                 
+                }
+                TelaLogin a = new TelaLogin();
+                a.iniciar();
+                tela.dispose();
             }
-            TelaLogin a = new TelaLogin();
-            a.iniciar();
-            tela.dispose();
         });
 
         // Botão voltar
@@ -137,4 +141,6 @@ public class TelaCadastroUsuario extends BaseTela{
         tela.add(painelCadVol, c);
         
     }
+
+    
 }

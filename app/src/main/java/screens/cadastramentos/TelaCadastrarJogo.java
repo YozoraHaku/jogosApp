@@ -6,6 +6,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.*;
 
+
+import objects.Jogo;
 import objects.User;
 import screens.BaseTela;
 import screens.visualizacao_dados.TelaInicial;
@@ -24,7 +26,7 @@ public class TelaCadastrarJogo extends BaseTela{
     private JPanel painelBotoes;
 
     
-    public TelaCadastrarJogo(TelaInicial telaInicial){
+    public TelaCadastrarJogo(TelaInicial telaInicial, User generico) {
         super("Cadastrar Jogo", 600, 800);
         telaInicial.setManipulavel();
         tela.setResizable(false);
@@ -43,10 +45,12 @@ public class TelaCadastrarJogo extends BaseTela{
         }
         fillDataLancamento.setValue(null);
         fillDataLancamento.setColumns(6);
+        fillDataLancamento.setHorizontalAlignment(fillDataLancamento.CENTER);
         
         // sessão tamanho do jogo (hrs) *************************************************************************************************************
         nmTamanhoJogo = new JLabel("Tempo médio de jogo: ");//pensar num nome melhor!!!
         fillTamanhoJogo = new JTextField();
+        fillTamanhoJogo.setHorizontalAlignment(fillTamanhoJogo.CENTER);
 
         // sessão desenvolvedor(a) *****************************************************************************************************************
         nmDesenvolvedor = new JLabel("Desenvolvedor(a): ");
@@ -57,8 +61,15 @@ public class TelaCadastrarJogo extends BaseTela{
         painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
         btnConfirmar = new JButton("Confirmar");
         btnConfirmar.addActionListener(e -> {
-            telaInicial.setManipulavel();
-            tela.dispose();
+            if (fillNomeJogo.getText()==""||fillDesenvolvedor.getText()==""||fillDataLancamento.getText()==""||fillTamanhoJogo.getText()=="") {
+                // Adicionar excessão aqui
+            } else {
+                getObjectController().addJogoLista(new Jogo(fillNomeJogo.getText(), fillDataLancamento.getText(), Integer.parseInt(fillTamanhoJogo.getText()), fillDesenvolvedor.getText(), generico.getEmail()));
+                salvarArquivo(getObjectController());
+                telaInicial.setManipulavel();
+                telaInicial.updateList();
+                tela.dispose();
+            }
         });
         btnCancelar = new JButton("Cancelar");
         btnCancelar.addActionListener(e -> {
@@ -84,7 +95,7 @@ public class TelaCadastrarJogo extends BaseTela{
         tela.add(nmNomeJogo, c);
 
         c.gridx = 1;
-        c.ipadx = 400;
+        c.ipadx = 300;
         tela.add(fillNomeJogo, c);
 
         // desenvolvedor
@@ -95,7 +106,7 @@ public class TelaCadastrarJogo extends BaseTela{
         tela.add(nmDesenvolvedor, c);
 
         c.gridx = 1;
-        c.ipadx = 400;
+        c.ipadx = 300;
         tela.add(fillDesenvolvedor, c);
 
         // tamanho do jogo
@@ -117,7 +128,7 @@ public class TelaCadastrarJogo extends BaseTela{
         tela.add(nmDataLancamento, c);
 
         c.gridx = 1;
-        c.ipadx = 20;
+        c.ipadx = 15;
         tela.add(fillDataLancamento, c);
 
         // Painel botoes
@@ -128,4 +139,5 @@ public class TelaCadastrarJogo extends BaseTela{
         tela.add(painelBotoes, c);
 
     }
+    
 }

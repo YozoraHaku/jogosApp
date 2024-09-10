@@ -2,6 +2,7 @@ package screens.visualizacao_dados;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 
 import objects.Jogo;
 import objects.User;
@@ -11,8 +12,7 @@ import screens.cadastramentos.TelaEditarUsuario;
 import screens.cadastramentos.TelaLogin;
 
 public class TelaInicial extends BaseTela{
-    private JScrollPane mostrarJogosPanel;
-    private JList listaJogos;
+    private JList<Jogo> listaJogos;
     private JButton btnCadJogo;
     private JMenuBar barra;
     public TelaInicial(User generico){  //Lembrar de sempre voltar para essa tela com o usuario
@@ -22,7 +22,7 @@ public class TelaInicial extends BaseTela{
         // ******************************************* Botão para cadastrar um jogo novo *****************************************************
         btnCadJogo = new JButton("Cadastrar novo jogo");
         btnCadJogo.addActionListener(e -> {
-            TelaCadastrarJogo abrirCadastroJogo = new TelaCadastrarJogo(this);
+            TelaCadastrarJogo abrirCadastroJogo = new TelaCadastrarJogo(this, generico);
             abrirCadastroJogo.iniciar();
 
         });
@@ -65,14 +65,10 @@ public class TelaInicial extends BaseTela{
 
 
         // ******************************************** LISTA DE JOGOS ***********************************************************************
-        listaJogos = new JList<>(new DefaultListModel<>());
-        DefaultListModel<Jogo> elementosLista = (DefaultListModel<Jogo>) listaJogos.getModel(); //Eu vou ter que configurar melhor essa droga, não vou? tenho certeza que vai dar problema (e eu não sei como funciona essa maravilha)
-        for (Jogo jogo : getObjectController().getListaJogos()){
-            elementosLista.addElement(jogo);
-        }
-        mostrarJogosPanel = new JScrollPane(listaJogos);
+        listaJogos = new JList<>();
+        updateList();
 
-        
+        // ******************************************** MONTANDO O GRID *********************************************************************
         tela.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -83,12 +79,25 @@ public class TelaInicial extends BaseTela{
         c.ipady = 600;
         c.gridx = GridBagConstraints.CENTER;
         c.gridy = 8;
-        tela.add(mostrarJogosPanel, c);
+        tela.add(listaJogos, c);
 
         c.ipady = 10;
         c.ipadx = 20;
         c.gridy = 9;
         tela.add(btnCadJogo, c);
         
+    }
+    public void updateList(){
+        getObjectController().getListaJogos().sort(new Comparator<Jogo>() {
+            @Override
+            public int compare(Jogo o1, Jogo o2) {
+                String nome1 = o1.getNome();
+                String nome2 = o2.getNome();
+
+                return nome1.compareTo(nome2);
+            }
+        });
+        listaJogos.setListData(getObjectController().getListaJogos().toArray(new Jogo[0]));
+
     }
 }
