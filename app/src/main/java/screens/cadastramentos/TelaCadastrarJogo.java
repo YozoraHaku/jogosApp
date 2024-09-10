@@ -1,7 +1,5 @@
 package screens.cadastramentos;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.text.ParseException;
 import java.awt.*;
 
@@ -76,42 +74,57 @@ public class TelaCadastrarJogo extends BaseTela{
         tela.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        c.gridheight = 1;
-        c.gridwidth = 1;
-
-
+        // nome do jogo
+        c.ipadx = 0;
+        c.ipady = 15;
         c.gridx = 0;
-        c.gridy = 1;
-        c.ipadx = 25;
-        c.ipady = 10;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
         tela.add(nmNomeJogo, c);
-        
+
         c.gridx = 1;
         c.ipadx = 400;
         tela.add(fillNomeJogo, c);
 
+        // desenvolvedor
+        c.ipadx = 0;
+        c.ipady = 15;
         c.gridx = 0;
-        c.gridy = 2;
-        c.ipadx = 25;
+        c.gridy = 1;
         tela.add(nmDesenvolvedor, c);
 
         c.gridx = 1;
         c.ipadx = 400;
-        tela.add(fillDesenvolvedor);
+        tela.add(fillDesenvolvedor, c);
 
+        // tamanho do jogo
+        c.ipadx = 0;
+        c.ipady = 15;
+        c.gridx = 0;
+        c.gridy = 2;
+        tela.add(nmTamanhoJogo, c);
+
+        c.gridx = 1;
+        c.ipadx = 50;
+        tela.add(fillTamanhoJogo, c);
+
+        // data lançamento
+        c.ipadx = 0;
+        c.ipady = 15;
         c.gridx = 0;
         c.gridy = 3;
-        c.ipadx = 25;
         tela.add(nmDataLancamento, c);
 
         c.gridx = 1;
-        c.ipadx = 0;
+        c.ipadx = 20;
         tela.add(fillDataLancamento, c);
 
-        c.gridx = 1;
-        c.gridy = 5;
-        c.ipadx = 200;
-        c.ipady = 25;
+        // Painel botoes
+        c.ipadx = 100;
+        c.ipady = 15;
+        c.gridx = 0;
+        c.gridy = 4;
         tela.add(painelBotoes, c);
 
     }
