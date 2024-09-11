@@ -6,7 +6,7 @@ import com.google.gson.*;
 
 import controllers.UsersJogosController;
 
-// Serializador finalizado caralhoooooooooooooooooooooooooooo (!!!falta editar a excessão da linha 20!!!)
+// Serializador finalizado caralhoooooooooooooooooooooooooooo 
 
 public class ObjectSerializer{
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -17,7 +17,7 @@ public class ObjectSerializer{
         try (FileWriter writer = new FileWriter("dados.json")){
             writer.write(json);
         } catch (IOException e) {
-            System.err.println("Erro ao salvar o arquivo Json: "+e.getMessage()); //essa aqui pra editar!!!!!
+            System.err.println("Erro ao salvar o arquivo Json: "+e.getMessage()); 
         }
          
     }

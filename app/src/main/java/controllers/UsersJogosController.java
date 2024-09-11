@@ -6,6 +6,7 @@ import objects.User;
 
 import java.util.*;
 
+//Controlador finalizado!!!!!!!!!!
 public class UsersJogosController implements Serializable{
     private ArrayList<Jogo> listaJogos = new ArrayList<>();
     private ArrayList<User> listaUsers = new ArrayList<>();
@@ -15,9 +16,9 @@ public class UsersJogosController implements Serializable{
         listaJogos.add(jogo);
     }
     public void removeJogoLista(UUID idGenerico){
-        for (Jogo jogo : listaJogos) {
-            if(jogo.getId()==idGenerico){
-                listaJogos.remove(jogo);
+        for (int index = 0; index < listaJogos.size(); index++) {
+            if (listaJogos.get(index).getId().equals(idGenerico)) {
+                listaJogos.remove(listaJogos.get(index));
                 continue;
             }
         }
@@ -31,9 +32,9 @@ public class UsersJogosController implements Serializable{
         listaUsers.add(usuario);
     }
     public void removeUsuarioLista(String email){
-        for (User user : listaUsers) {
-            if(user.getEmail()==email){
-                listaUsers.remove(user);
+        for (int index = 0; index < listaUsers.size(); index++) {
+            if (listaUsers.get(index).getEmail().equals(email)) {
+                listaUsers.remove(listaUsers.get(index));
                 continue;
             }
         }

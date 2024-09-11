@@ -22,6 +22,7 @@ public class TelaCadastroUsuario extends BaseTela{
     
     public TelaCadastroUsuario(){
         super("register", 600, 600);
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Sessão Nome
         nmNome = new JLabel("Nome: ");

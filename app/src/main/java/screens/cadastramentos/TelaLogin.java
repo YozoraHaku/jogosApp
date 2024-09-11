@@ -22,6 +22,7 @@ public class TelaLogin extends BaseTela{
     public TelaLogin(){
         super("login", 200, 600);
         tela.setResizable(false);
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Area email
         campoEmail = new JTextField();
@@ -37,17 +38,24 @@ public class TelaLogin extends BaseTela{
         // Ações botão de login
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(e -> {
+            boolean a = true;
+            if (campoEmail.getText().isBlank()||String.valueOf(campoSenha.getPassword()).isBlank()) {
+                JOptionPane.showMessageDialog(tela, "Email ou senha não preenchidos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
             for (User user : getObjectController().getListaUsers()) {
                 if (user.getEmail().equals(campoEmail.getText()) && user.getSenha().equals(String.valueOf(campoSenha.getPassword()))) {
                     TelaInicial telaPrincipal = new TelaInicial(user);
                     telaPrincipal.iniciar();
                     tela.dispose();
+                    a = false;
                     continue;
-                } else {
-                    JOptionPane.showMessageDialog(tela, "Email ou senha incorretos.", "Erro", JOptionPane.ERROR_MESSAGE);
-                    continue;
-                }
-
+                } 
+            }
+            if (a) {
+                JOptionPane.showMessageDialog(tela, "Email ou senha incorretos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
             }
         });
 
