@@ -19,6 +19,10 @@ public class TelaInicial extends BaseTela{
         super("Main", 800, 800);
         tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+        // ******************************************** LISTA DE JOGOS ***********************************************************************
+        listaJogos = new JList<>();
+        updateList();
+
         // ******************************************* Botão para cadastrar um jogo novo *****************************************************
         btnCadJogo = new JButton("Cadastrar novo jogo");
         btnCadJogo.addActionListener(e -> {
@@ -64,10 +68,6 @@ public class TelaInicial extends BaseTela{
             menu.add(sair);
 
 
-        // ******************************************** LISTA DE JOGOS ***********************************************************************
-        listaJogos = new JList<>();
-        updateList();
-
         // ******************************************** MONTANDO O GRID *********************************************************************
         tela.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -85,6 +85,7 @@ public class TelaInicial extends BaseTela{
         c.ipadx = 20;
         c.gridy = 9;
         tela.add(btnCadJogo, c);
+
         
     }
     public void updateList(){

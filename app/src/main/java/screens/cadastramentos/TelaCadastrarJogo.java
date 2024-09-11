@@ -61,8 +61,8 @@ public class TelaCadastrarJogo extends BaseTela{
         painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
         btnConfirmar = new JButton("Confirmar");
         btnConfirmar.addActionListener(e -> {
-            if (fillNomeJogo.getText()==""||fillDesenvolvedor.getText()==""||fillDataLancamento.getText()==""||fillTamanhoJogo.getText()=="") {
-                // Adicionar excessão aqui
+            if (fillNomeJogo.getText().isBlank()||fillDesenvolvedor.getText().isBlank()||fillDataLancamento.getText().isBlank()||fillTamanhoJogo.getText().isBlank()) {
+                JOptionPane.showMessageDialog(tela, "Formulário não preenchido", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
                 getObjectController().addJogoLista(new Jogo(fillNomeJogo.getText(), fillDataLancamento.getText(), Integer.parseInt(fillTamanhoJogo.getText()), fillDesenvolvedor.getText(), generico.getEmail()));
                 salvarArquivo(getObjectController());

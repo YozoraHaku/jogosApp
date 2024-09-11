@@ -70,5 +70,10 @@ public class Jogo {
     public String toString(){
         return nome+"                "+dataLancamento;
     }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 
 }

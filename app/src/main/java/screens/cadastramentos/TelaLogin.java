@@ -7,6 +7,7 @@ import screens.visualizacao_dados.TelaInicial;
 
 import java.awt.*;
 
+// tela finalizada!!!
 public class TelaLogin extends BaseTela{
     private JButton btnLogin;
     private JButton btnCadastro;
@@ -43,7 +44,7 @@ public class TelaLogin extends BaseTela{
                     tela.dispose();
                     continue;
                 } else {
-                    // !!!Adicionar excessão para email ou senha incorretos!!!
+                    JOptionPane.showMessageDialog(tela, "Email ou senha incorretos.", "Erro", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
 

@@ -5,6 +5,8 @@ import java.awt.*;
 import objects.User;
 import screens.BaseTela;
 
+
+// Tela finalizada!!!!!!
 public class TelaCadastroUsuario extends BaseTela{
     private JLabel nmNome;
     private JTextField fillNome;
@@ -43,21 +45,28 @@ public class TelaCadastroUsuario extends BaseTela{
             String senhaPreenchido = new String(fillSenha.getPassword()).trim();
             String repetirSenhaPreenchido = new String(fillRepetirSenha.getPassword()).trim();
             
-            if (senhaPreenchido==""||repetirSenhaPreenchido==""||fillNome.getText()==""||fillEmail.getText()=="") {
-                // adicionar excessão para espaço em branco
+            if (senhaPreenchido.isBlank()||fillNome.getText().isBlank()||fillEmail.getText().isBlank()) {
+                JOptionPane.showMessageDialog(tela, "Formulário não preenchido", "Erro", JOptionPane.ERROR_MESSAGE);
             }else{
+                for (User u : getObjectController().getListaUsers()) {
+                    if (fillEmail.getText().equals(u.getEmail())) {
+                        JOptionPane.showMessageDialog(tela, "Email já existente", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
                 if(senhaPreenchido.equals(repetirSenhaPreenchido)){
                     User novoUsuario = new User(fillNome.getText(), fillEmail.getText(), senhaPreenchido);
                     getObjectController().addUsuarioLista(novoUsuario);
                     salvarArquivo(getObjectController());
+                    TelaLogin a = new TelaLogin();
+                    a.iniciar();
+                    tela.dispose();
                 } else {
 
-                    // !!!Adicionar excessão pra email já existente!!!
+                    JOptionPane.showMessageDialog(tela, "As senhas não são iguais. Tente Novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
                 
                 }
-                TelaLogin a = new TelaLogin();
-                a.iniciar();
-                tela.dispose();
+                
             }
         });
 
