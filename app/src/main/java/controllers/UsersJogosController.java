@@ -6,7 +6,7 @@ import objects.User;
 
 import java.util.*;
 
-//Controlador finalizado!!!!!!!!!!
+//Controlador não finalizado drogaaaaaaaa!!!!!!!!!!
 public class UsersJogosController implements Serializable{
     private ArrayList<Jogo> listaJogos = new ArrayList<>();
     private ArrayList<User> listaUsers = new ArrayList<>();
@@ -23,6 +23,14 @@ public class UsersJogosController implements Serializable{
             }
         }
     }
+    public void editJogoLista(Jogo jogo){
+        for (int i = 0; i < listaUsers.size(); i++) {
+            if (jogo.getId().equals(listaJogos.get(i).getId())) {
+                listaJogos.set(i, jogo);
+                continue;
+            }
+        }
+    }
     public ArrayList<Jogo> getListaJogos() {
         return listaJogos;
     }
@@ -35,6 +43,14 @@ public class UsersJogosController implements Serializable{
         for (int index = 0; index < listaUsers.size(); index++) {
             if (listaUsers.get(index).getEmail().equals(email)) {
                 listaUsers.remove(listaUsers.get(index));
+                continue;
+            }
+        }
+    }
+    public void editUsuarioLista(User generico){
+        for (int i = 0; i < listaUsers.size(); i++) {
+            if (generico.getEmail().equals(listaUsers.get(i).getEmail())) {
+                listaUsers.set(i, generico);
                 continue;
             }
         }

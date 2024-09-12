@@ -17,6 +17,7 @@ public class BaseTela extends ObjectSerializer{
         tela.setTitle(titulo);
         tela.setSize(w, h);
         tela.setLocationRelativeTo(null);
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
     }

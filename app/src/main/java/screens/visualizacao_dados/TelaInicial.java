@@ -51,7 +51,7 @@ public class TelaInicial extends BaseTela{
             // editar perfil
             JMenuItem editarPerfil = new JMenuItem("Editar perfil");
             editarPerfil.addActionListener(e -> {
-                TelaEditarUsuario editarUsuario = new TelaEditarUsuario(generico);
+                TelaEditarUsuario editarUsuario = new TelaEditarUsuario(generico, this);
                 editarUsuario.iniciar();
                 
             });
