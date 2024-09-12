@@ -4,6 +4,8 @@ import objects.Jogo;
 import objects.JogoSalvo;
 import objects.User;
 import screens.BaseTela;
+import screens.cadastramentos.TelaEditarJogo;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -70,7 +72,8 @@ public class TelaDetalhesJogo extends BaseTela{
         });
         botaoEditarJogo = new JButton("Editar");
         botaoEditarJogo.addActionListener(e -> {
-
+            TelaEditarJogo telaEditarJogo = new TelaEditarJogo(this, jogo);
+            telaEditarJogo.iniciar();
         });
 
         botaoRemoverJogo = new JButton("Remover");
