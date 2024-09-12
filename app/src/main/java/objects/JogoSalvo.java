@@ -27,7 +27,7 @@ public class JogoSalvo {
     }
 
     // Id do jogo para manipular 
-    public UUID getJogoSalvo(){
+    public UUID getJogoSalvoId(){
         return jogoID;
     }
 

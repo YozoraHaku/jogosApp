@@ -2,6 +2,7 @@ package objects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 public class User {
     private String nome;
@@ -43,8 +44,16 @@ public class User {
     public void addJogo(JogoSalvo jogo){
         listaJogos.add(jogo);
     }
-    public void removeJogo(JogoSalvo jogo){
-        listaJogos.remove(jogo);
+    public void removeJogo(UUID jogoID){
+        for (int i = 0; i < listaJogos.size(); i++) {
+            if (listaJogos.get(i).getJogoSalvoId().equals(jogoID)) {
+                listaJogos.remove(i);
+                continue;
+            }
+        }
+    }
+    public void editarJogo(){
+        
     }
     public List<JogoSalvo> getListaJogos() {
         return listaJogos;

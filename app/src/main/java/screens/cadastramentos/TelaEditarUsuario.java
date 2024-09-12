@@ -86,7 +86,7 @@ public class TelaEditarUsuario extends BaseTela{
 
         // Preencher nome
         c.gridx = GridBagConstraints.CENTER;
-        c.ipadx = 400;
+        c.ipadx = 356;
         c.ipady = 15;
         tela.add(fillNome, c);
 

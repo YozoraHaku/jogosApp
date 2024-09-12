@@ -16,6 +16,7 @@ public class Jogo {
         this.tamanhoJogo = tamanhoJogo;
         this.dataLancamento = dataLancamento;
         this.desenvolvedor = desenvolvedor;
+        this.creatorEmail = creatorEmail;
     }
 
     // Nome ********************************************************************************************************************

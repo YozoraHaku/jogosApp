@@ -1,6 +1,7 @@
 package screens.visualizacao_dados;
 
 import objects.Jogo;
+import objects.JogoSalvo;
 import objects.User;
 import screens.BaseTela;
 import javax.swing.*;
@@ -22,21 +23,20 @@ public class TelaDetalhesJogo extends BaseTela{
     private JButton botaoVoltar;
 
     
-    public TelaDetalhesJogo(User generico, Jogo jogo, TelaInicial telaInicial){
+    public TelaDetalhesJogo(User generico, Jogo jogo){
         super(jogo.getNome(), 800, 800);
         tela.setExtendedState(tela.MAXIMIZED_BOTH);
-        UIManager.put("Label.font", new Font("Arial", Font.CENTER_BASELINE, 25));
 
         // *************************************** PAINEL DE INFORMAÇÕES ***************************************************************
         mostrarNome = new JLabel(jogo.getNome());
         mostrarDesenvolvedor = new JLabel("Desenvolvedor(a): "+jogo.getDesenvolvedor());
-        mostrarTamanhoJogo = new JLabel("Tempo total do jogo: "+ Integer.toString(jogo.getTamanhoJogo()));
+        mostrarTamanhoJogo = new JLabel("Tempo total do jogo: "+ Integer.toString(jogo.getTamanhoJogo())+"h");
         mostrarDataLancamento = new JLabel(jogo.getDataLancamento());
         mostrarCreatorEmail = new JLabel("Adicionado por: "+jogo.getCreatorEmail());
 
         painelInformaçoes = new JPanel();
-        painelInformaçoes.setLayout(new BoxLayout(painelInformaçoes, BoxLayout.PAGE_AXIS));
         painelInformaçoes.setBorder(BorderFactory.createLineBorder(Color.darkGray));
+        painelInformaçoes.setLayout(new BoxLayout(painelInformaçoes, BoxLayout.Y_AXIS));
 
         painelInformaçoes.add(mostrarNome);
         painelInformaçoes.add(mostrarDesenvolvedor);
@@ -44,11 +44,29 @@ public class TelaDetalhesJogo extends BaseTela{
         painelInformaçoes.add(mostrarDataLancamento);
         painelInformaçoes.add(mostrarCreatorEmail);
 
+        // *************************************************** BOTÃO VOLTAR *********************************************************************
+
+        botaoVoltar = new JButton("Voltar");
+        botaoVoltar.setSize(25, 15);
+        botaoVoltar.addActionListener(e -> {
+            TelaInicial telaInicial = new TelaInicial(generico);
+            telaInicial.iniciar();
+            tela.setVisible(false);
+        });
 
         // ************************************ PAINEL BOTÕES ADD REMOVE EDIT ********************************************************
         botaoAddMinhaLista = new JButton("Adicionar à lista");
         botaoAddMinhaLista.addActionListener(e -> {
-
+            for (JogoSalvo i : generico.getListaJogos()) {
+                if (i.getJogoSalvoId().equals(jogo.getId())) {
+                    JOptionPane.showConfirmDialog(tela, "Jogo já adicionado!", null, JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+            JogoSalvo salvarJogo = new JogoSalvo(jogo.getId());
+            generico.addJogo(salvarJogo);
+            getObjectController().editUsuarioLista(generico);
+            salvarArquivo(getObjectController());
         });
         botaoEditarJogo = new JButton("Editar");
         botaoEditarJogo.addActionListener(e -> {
@@ -58,23 +76,23 @@ public class TelaDetalhesJogo extends BaseTela{
         botaoRemoverJogo = new JButton("Remover");
         botaoRemoverJogo.setBackground(Color.RED);
         botaoRemoverJogo.addActionListener(e -> {
-
+            int a = JOptionPane.showConfirmDialog(tela, "Excluir jogo?", null, JOptionPane.YES_NO_OPTION);
+            if (a==0) {
+                for (User user : getObjectController().getListaUsers()) {
+                    user.removeJogo(jogo.getId());
+                }
+                generico.removeJogo(jogo.getId());
+                getObjectController().removeJogoLista(jogo.getId());
+                salvarArquivo(getObjectController());
+                TelaInicial telaInicial = new TelaInicial(generico);
+                telaInicial.iniciar();
+                tela.setVisible(false);
+            }
         });
 
         painelBotoes = new JPanel();
-        painelBotoes.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        painelBotoes.setLayout(new FlowLayout());
         painelBotoes.add(botaoAddMinhaLista);
-
-        // *************************************************** BOTÃO VOLTAR *********************************************************************
-
-        botaoVoltar = new JButton("Voltar");
-        botaoVoltar.setAlignmentX(JFrame.LEFT_ALIGNMENT);
-        botaoVoltar.setSize(25, 15);
-        botaoVoltar.addActionListener(e -> {
-            telaInicial.iniciar();
-            tela.dispose();
-        });
-        tela.add(botaoVoltar, JFrame.TOP_ALIGNMENT);
 
         // *************************************************** montando o grid ******************************************************************
         tela.setLayout(new GridBagLayout());
@@ -86,9 +104,8 @@ public class TelaDetalhesJogo extends BaseTela{
         c.gridy = 0;
         c.ipady = 400;
         c.ipadx = 400;
-        tela.add(painelInformaçoes);
+        tela.add(painelInformaçoes, c);
 
-        c.gridx = 0;
         c.gridy = 1;
         c.ipady = 15;
         c.ipadx = 40;
@@ -97,7 +114,11 @@ public class TelaDetalhesJogo extends BaseTela{
             painelBotoes.add(botaoRemoverJogo);
             c.ipadx = 100;
         }
-        tela.add(painelBotoes);
+        tela.add(painelBotoes, c);
+
+        c.gridy = 2;
+        c.ipady = 20;
+        tela.add(botaoVoltar, c);
 
     }
 }

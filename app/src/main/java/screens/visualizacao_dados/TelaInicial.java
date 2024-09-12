@@ -20,14 +20,11 @@ public class TelaInicial extends BaseTela{
         tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // ******************************************** BARRA DE PESQUISA ********************************************************************
-
-        // a fazer
-
+        
         // ******************************************** LISTA DE JOGOS ***********************************************************************
         listaJogos = new JList<>();
         listaJogos.addListSelectionListener(e -> {
-            TelaDetalhesJogo abrirDetalhesJogo = new TelaDetalhesJogo(generico, listaJogos.getSelectedValue(), this);
+            TelaDetalhesJogo abrirDetalhesJogo = new TelaDetalhesJogo(generico, listaJogos.getSelectedValue());
             abrirDetalhesJogo.iniciar();
             tela.dispose();
         });
@@ -42,57 +39,59 @@ public class TelaInicial extends BaseTela{
         });
 
         // *************************************************** BARRA LATERAL ****************************************************************
-            barra = new JMenuBar();
-            tela.setJMenuBar(barra);
-            JMenu menu = new JMenu("Usuário");
-            barra.add(menu);
-            JMenu configuracoes = new JMenu("Configurações");
+        barra = new JMenuBar();
+        tela.setJMenuBar(barra);
+        JMenu menu = new JMenu("Usuário");
+        barra.add(menu);
+        JMenu configuracoes = new JMenu("Configurações");
 
-            // editar perfil
-            JMenuItem editarPerfil = new JMenuItem("Editar perfil");
-            editarPerfil.addActionListener(e -> {
-                TelaEditarUsuario editarUsuario = new TelaEditarUsuario(generico, this);
-                editarUsuario.iniciar();
-                
-            });
-
-            //excluir perfil 
-            JMenuItem excluirPerfil = new JMenuItem("Excluir perfil");
-            excluirPerfil.addActionListener(e -> {
-                int a = JOptionPane.showConfirmDialog(excluirPerfil, "Tem certeza que quer excluir o perfil?", null, JOptionPane.OK_CANCEL_OPTION);
-                if (a==0) {
-                    JOptionPane.showMessageDialog(tela, "Perfil excluído.", null, JOptionPane.INFORMATION_MESSAGE);
-                    tela.dispose();
-                    getObjectController().removeUsuarioLista(generico.getEmail());
-                    salvarArquivo(getObjectController());
-                    TelaLogin abrir = new TelaLogin();
-                    abrir.iniciar();
-                    
-                }
-            });
-            configuracoes.add(editarPerfil);
-            configuracoes.add(excluirPerfil);
-
-            //jogos salvos
-            JMenuItem meusJogos = new JMenuItem("Meus Jogos");
-            meusJogos.addActionListener(e -> {
-                TelaJogosSalvos abrirMeusJogos = new TelaJogosSalvos(generico, this);
-                abrirMeusJogos.iniciar();
-                tela.dispose();
-            });
-
-            // retornar ao login
-            JMenuItem sair = new JMenuItem("Fazer log-out");
-            sair.addActionListener(e -> {
-                TelaLogin logout = new TelaLogin();
-                logout.iniciar();
-                tela.dispose();
-            });
+        // editar perfil
+        JMenuItem editarPerfil = new JMenuItem("Editar perfil");
+        editarPerfil.addActionListener(e -> {
+            TelaEditarUsuario editarUsuario = new TelaEditarUsuario(generico, this);
+            editarUsuario.iniciar();
             
-            menu.add(meusJogos);
-            menu.add(configuracoes);
-            menu.addSeparator();
-            menu.add(sair);
+        });
+
+        //excluir perfil 
+        JMenuItem excluirPerfil = new JMenuItem("Excluir perfil");
+        excluirPerfil.setBackground(Color.RED);
+        excluirPerfil.addActionListener(e -> {
+            int a = JOptionPane.showConfirmDialog(excluirPerfil, "Tem certeza que quer excluir o perfil?", null, JOptionPane.OK_CANCEL_OPTION);
+            if (a==0) {
+                JOptionPane.showMessageDialog(tela, "Perfil excluído.", null, JOptionPane.INFORMATION_MESSAGE);
+                tela.dispose();
+                getObjectController().removeUsuarioLista(generico.getEmail());
+                salvarArquivo(getObjectController());
+                TelaLogin abrir = new TelaLogin();
+                abrir.iniciar();
+                
+            }
+        });
+        configuracoes.add(editarPerfil);
+        configuracoes.add(excluirPerfil);
+
+        //jogos salvos
+        JMenuItem meusJogos = new JMenuItem("Meus Jogos");
+        meusJogos.addActionListener(e -> {
+            TelaJogosSalvos abrirMeusJogos = new TelaJogosSalvos(generico, this);
+            abrirMeusJogos.iniciar();
+            tela.dispose();
+        });
+
+        // retornar ao login
+        JMenuItem sair = new JMenuItem("Fazer log-out");
+        sair.addActionListener(e -> {
+            TelaLogin logout = new TelaLogin();
+            logout.iniciar();
+            tela.dispose();
+        });
+        
+        menu.add(meusJogos);
+        menu.add(configuracoes);
+        menu.addSeparator();
+        menu.add(sair);
+        
 
 
         // ******************************************** MONTANDO O GRID *********************************************************************
