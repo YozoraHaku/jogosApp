@@ -32,7 +32,7 @@ Tela que apresenta uma informação mais detalhada do jogo selecionado, permitin
 
 ![tela detalhes jogo](https://github.com/user-attachments/assets/4c4f0614-c80f-4e6c-a271-03d081bcbf04)
 
-### Tela editar JogoTela que permite o usuário editar o jogo selecionado.
+### Tela editar Jogo
 Tela que permite editar o jogo selecionado caso o usuário seja a pessoa que adicionou.
 
 ![tela editar jogo](https://github.com/user-attachments/assets/74e09b38-54b2-4c03-835f-6a1b8fdd1540)
