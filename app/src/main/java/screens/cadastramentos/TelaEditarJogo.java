@@ -67,14 +67,18 @@ public class TelaEditarJogo extends BaseTela{
             if (fillNomeJogo.getText().isBlank()||fillDesenvolvedor.getText().isBlank()||fillDataLancamento.getText().isBlank()||fillTamanhoJogo.getText().isBlank()) {
                 JOptionPane.showMessageDialog(tela, "Formulário não preenchido", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
-                jogo.setNome(fillNomeJogo.getText());
-                jogo.setDesenvolvedor(fillDesenvolvedor.getText());
-                jogo.setTamanhoJogo(Integer.valueOf(fillTamanhoJogo.getText()));
-                jogo.setDataLancamento(fillDataLancamento.getText());
-                getObjectController().editJogoLista(jogo);
-                salvarArquivo(getObjectController());
-                telaDetalhesJogo.setManipulavel();
-                tela.dispose();
+                try {
+                    jogo.setNome(fillNomeJogo.getText());
+                    jogo.setDesenvolvedor(fillDesenvolvedor.getText());
+                    jogo.setTamanhoJogo(Integer.valueOf(fillTamanhoJogo.getText()));
+                    jogo.setDataLancamento(fillDataLancamento.getText());
+                    getObjectController().editJogoLista(jogo);
+                    salvarArquivo(getObjectController());
+                    telaDetalhesJogo.setManipulavel();
+                    tela.dispose();
+                } catch (NumberFormatException e1) {
+                    JOptionPane.showMessageDialog(tela, "Valor inválido. Campo 'Tempo médio de jogo' deve ser preenchido somente por números.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         btnCancelar = new JButton("Cancelar");

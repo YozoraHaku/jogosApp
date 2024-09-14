@@ -74,7 +74,7 @@ public class TelaInicial extends BaseTela{
         //jogos salvos
         JMenuItem meusJogos = new JMenuItem("Meus Jogos");
         meusJogos.addActionListener(e -> {
-            TelaJogosSalvos abrirMeusJogos = new TelaJogosSalvos(generico, this);
+            TelaJogosSalvos abrirMeusJogos = new TelaJogosSalvos(generico);
             abrirMeusJogos.iniciar();
             tela.dispose();
         });
@@ -125,6 +125,8 @@ public class TelaInicial extends BaseTela{
             }
         });
         listaJogos.setListData(getObjectController().getListaJogos().toArray(new Jogo[0]));
+        listaJogos.revalidate();
+        listaJogos.repaint();
 
     }
 }
